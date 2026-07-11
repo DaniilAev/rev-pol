@@ -14,8 +14,12 @@ int fill_buffer(char buffer[], int size){
         if (position == 0 && ch == 'S')
             return -1;
         if (ch == 'R')
-            return position;
-          
+            goto valid;
+        buffer[position] = ch;  
     }
+    while (getchar() != 'R');
     return -2;
+
+    valid:
+    return position;
 }
