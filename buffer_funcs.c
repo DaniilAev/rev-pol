@@ -8,16 +8,18 @@ void clean_buffer(char buffer[], int size){
 
 int fill_buffer(char buffer[], int size){
     int position;
-    char ch;
+    int ch;
+
     for (position = 0; position < size; ++position){
         ch = getchar();
         if (position == 0 && ch == 'S')
             return -1;
-        if (ch == 'R')
+        if (ch == EOF || ch == '\n')
             goto valid;
         buffer[position] = ch;  
     }
-    while (getchar() != 'R');
+    
+    while ((ch = getchar()) != EOF && ch != '\n');
     return -2;
 
     valid:
