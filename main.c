@@ -24,10 +24,9 @@ int main(){
         if (code == -1)
             break;
         if (code == -2){
-            printf("%s%d %s", "The buffer is full, the buffer size is ", BUF_SIZE - 1, "characters.");
+            printf("%s%d %s", "The buffer is full, the buffer size is ", CHAR_BUF_SIZE - 1, "characters.\n");
             continue;
         }
-
         printf("%s\n", buffer);
     } 
     return 0 ;
