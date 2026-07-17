@@ -24,7 +24,7 @@ int main(){
         if (code == -1)
             break;
         if (code == -2){
-            printf("%s", "Buffer is overflowing, but symbol of ending of exspression is not detected.\n");
+            printf("%s%d %s", "The buffer is full, the buffer size is ", BUF_SIZE - 1, "characters.");
             continue;
         }
 
