@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int valid(char s[]);
+int valid(const char s[]);
 
 void clean_buffer(char char_buffer[], int char_size, double operand_buffer[], int operand_size, char operator_buffer[], int operator_size){
        int position;
+
        for (position = 0; position < char_size; ++position)
            char_buffer[position] = '\0';
         for (position = 0; position < operand_size; ++position)
-            operand_buffer[position] = 0;
+            operand_buffer[position] = 0.0;
         for (position = 0; position < operator_size; ++position)
             operator_buffer[position] = '\0';
 }
@@ -33,10 +34,11 @@ int fill_buffer(char buffer[], int size){
     return position;
 }
 
-int dist(char ch_buffer[], double opn_buffer[], char opr_buffer[], int opn_buffer_size, int opr_buffer_size, int code){
+int dist(const char ch_buffer[], double opn_buffer[], char opr_buffer[], int opn_buffer_size, int opr_buffer_size, int code){
     int ch_car = 0;
     int opn_car = 0;
     int opr_car = 0;
+
     while (ch_car < code)
     {
         if (opr_car == opr_buffer_size - 1)
@@ -67,6 +69,16 @@ int dist(char ch_buffer[], double opn_buffer[], char opr_buffer[], int opn_buffe
             ch_car += 2;
             continue;
         }
+        else if (ch_buffer[ch_car] == '%' && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){ /* MOD case*/
+            opr_buffer[opr_car++] = '%';
+            ch_car += 2;
+            continue;
+        }
+        else if (ch_buffer[ch_car] == '^' && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){ /* Power case*/
+            opr_buffer[opr_car++] = '^';
+            ch_car += 2;
+            continue;
+        }    
         else{
             if (valid(&ch_buffer[ch_car]) == 0){
                 if (opn_car == opn_buffer_size -1)
@@ -76,7 +88,7 @@ int dist(char ch_buffer[], double opn_buffer[], char opr_buffer[], int opn_buffe
 
                 while (!(ch_buffer[ch_car] == ' ' || ch_buffer[ch_car] == '\0'))
                     ++ch_car;              
-            }
+            } 
             else
                 return -1;
         }        

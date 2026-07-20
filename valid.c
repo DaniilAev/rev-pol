@@ -1,4 +1,4 @@
-int valid(char c[]){ /* space or '\0' required, else  SF*/  
+int valid(const char c[]){ /* space or '\0' required, else  SF*/  
     int i = 0;
         
     if (c[i] == '-' || c[i] == '+')  
