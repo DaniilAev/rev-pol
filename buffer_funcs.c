@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int valid(char s[]);
 
@@ -32,13 +33,17 @@ int fill_buffer(char buffer[], int size){
     return position;
 }
 
-int dist(char ch_buffer[], double opn_buffer[], char opr_buffer[], int code){
+int dist(char ch_buffer[], double opn_buffer[], char opr_buffer[], int opn_buffer_size, int opr_buffer_size, int code){
     int ch_car = 0;
     int opn_car = 0;
     int opr_car = 0;
     while (ch_car < code)
     {
-        if (ch_buffer[ch_car] == ' '){ /*Space case*/
+        if (opr_car == opr_buffer_size - 1)
+            return -2;
+        if (ch_buffer[ch_car] == '\0')
+            return 0;
+        else if (ch_buffer[ch_car] == ' '){ /*Space case*/
             ++ch_car;
             continue;
         }
@@ -63,11 +68,17 @@ int dist(char ch_buffer[], double opn_buffer[], char opr_buffer[], int code){
             continue;
         }
         else{
-             if (valid(ch_buffer+ch_car)){
-                 opn_buffer[opn_car++] = atof(ch_buffer+ch_car);
-             }
-             else
-                 return -1;
+            if (valid(&ch_buffer[ch_car]) == 0){
+                if (opn_car == opn_buffer_size -1)
+                    return -3;
+
+                opn_buffer[opn_car++] = atof(&ch_buffer[ch_car]);
+
+                while (!(ch_buffer[ch_car] == ' ' || ch_buffer[ch_car] == '\0'))
+                    ++ch_car;              
+            }
+            else
+                return -1;
         }        
     }
     return 0;

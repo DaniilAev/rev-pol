@@ -6,7 +6,7 @@ int valid(char c[]){ /* space or '\0' required, else  SF*/
         
     for (; c[i] >= '0' && c[i] <= '9'; ++i);
     
-    if (!(c[i] == '.' || c[i] == 'e' || c[i] != 'E' || c[i] == ' ' || c[i] == '\0'))
+    if (!(c[i] == '.' || c[i] == 'e' || c[i] == 'E' || c[i] == ' ' || c[i] == '\0'))
         return -1;   
          
     if (c[i] == '.'){
