@@ -34,7 +34,7 @@ int fill_buffer(char buffer[], int size){
     return position;
 }
 
-int dist(const char ch_buffer[], double opn_buffer[], char opr_buffer[], int opn_buffer_size, int opr_buffer_size, int code){
+int dist(const char ch_buffer[], double opn_buffer[], char opr_buffer[], int opn_buffer_size, int opr_buffer_size, int code, int* last_opn, int* last_opr){
     int ch_car = 0;
     int opn_car = 0;
     int opr_car = 0;
@@ -93,6 +93,8 @@ int dist(const char ch_buffer[], double opn_buffer[], char opr_buffer[], int opn
                 return -1;
         }        
     }
+    *last_opr = opr_car;
+    *last_opn = opn_car;
     return 0;
     
 }

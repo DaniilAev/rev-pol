@@ -16,6 +16,8 @@ int main(){
     char buffer[CHAR_BUF_SIZE];
     int code = 0;
     int dist_code;
+    int last_opn;
+    int last_opr;
 
     printf("%s", "Enter the expression or 'S' to stop the program.\n");
 
@@ -31,7 +33,7 @@ int main(){
             continue;
         }
 
-        dist_code = dist(buffer, operand_buffer, operator_buffer, OPERAND_BUF_SIZE, OPERATOR_BUF_SIZE, code);
+        dist_code = dist(buffer, operand_buffer, operator_buffer, OPERAND_BUF_SIZE, OPERATOR_BUF_SIZE, code, &last_opn, &last_opr);
         if (dist_code == 0)
         {
             int i;
