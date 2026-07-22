@@ -34,7 +34,7 @@ int fill_buffer(char buffer[], int size){
     return position;
 }
 
-int dist(const char ch_buffer[], double opn_buffer[], char opr_buffer[], int opn_buffer_size, int opr_buffer_size, int code, int* last_opn, int* last_opr){
+int dist(const char ch_buffer[], double opn_buffer[], int opr_buffer[][2], int opn_buffer_size, int opr_buffer_size, int code, int* last_opn, int* last_opr){
     int ch_car = 0;
     int opn_car = 0;
     int opr_car = 0;
@@ -50,32 +50,38 @@ int dist(const char ch_buffer[], double opn_buffer[], char opr_buffer[], int opn
             continue;
         }
         else if (ch_buffer[ch_car] == '+' && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){ /*Plus case*/
-            opr_buffer[opr_car++] = '+';
+            opr_buffer[opr_car++][0] = '+';
+            opr_buffer[opn_car][1] = opn_car - 1;
             ch_car += 2;
             continue;
         }
         else if (ch_buffer[ch_car] == '-' && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){ /* Minus case*/
-            opr_buffer[opr_car++] = '-';
+            opr_buffer[opr_car++][0] = '-';
+            opr_buffer[opn_car][1] = opn_car - 1;            
             ch_car += 2;
             continue;
         }
         else if (ch_buffer[ch_car] == '*' && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){ /* Mult case*/
-            opr_buffer[opr_car++] = '*';
+            opr_buffer[opr_car++][0] = '*';
+            opr_buffer[opn_car][1] = opn_car - 1;
             ch_car += 2;
             continue;
         }
         else if (ch_buffer[ch_car] == '/' && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){ /* Div case*/
-            opr_buffer[opr_car++] = '/';
+            opr_buffer[opr_car++][0] = '/';
+            opr_buffer[opn_car][1] = opn_car - 1;
             ch_car += 2;
             continue;
         }
         else if (ch_buffer[ch_car] == '%' && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){ /* MOD case*/
-            opr_buffer[opr_car++] = '%';
+            opr_buffer[opr_car++][0] = '%';
+            opr_buffer[opn_car][1] = opn_car - 1;
             ch_car += 2;
             continue;
         }
         else if (ch_buffer[ch_car] == '^' && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){ /* Power case*/
-            opr_buffer[opr_car++] = '^';
+            opr_buffer[opr_car++][0] = '^';
+            opr_buffer[opn_car][1] = opn_car - 1;
             ch_car += 2;
             continue;
         }    

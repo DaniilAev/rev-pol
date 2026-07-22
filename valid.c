@@ -4,6 +4,9 @@ int valid(const char c[]){ /* space or '\0' required, else  SF*/
     if (c[i] == '-' || c[i] == '+')  
         ++i;
         
+    if (!(c[i] >= '0' && c[i] <= '9'))
+        return -1;
+        
     for (; c[i] >= '0' && c[i] <= '9'; ++i);
     
     if (!(c[i] == '.' || c[i] == 'e' || c[i] == 'E' || c[i] == ' ' || c[i] == '\0'))

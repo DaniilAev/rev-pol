@@ -12,7 +12,7 @@ int fill_buffer(char buffer[], int size);
 
 int main(){
     double operand_buffer[OPERAND_BUF_SIZE];
-    char operator_buffer[OPERATOR_BUF_SIZE];
+    int operator_buffer[OPERATOR_BUF_SIZE][2];
     char buffer[CHAR_BUF_SIZE];
     int code = 0;
     int dist_code;
