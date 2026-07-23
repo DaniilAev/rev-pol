@@ -3,17 +3,18 @@
 
 int valid(const char s[]);
 
-void clean_buffer(char char_buffer[], int char_size, double operand_buffer[], int operand_size, char operator_buffer[], int operator_size){
+void clean_buffer(char char_buffer[], int char_size, double operand_buffer[], int operand_size, int operator_buffer[][2], int operator_size){
        int position;
 
        for (position = 0; position < char_size; ++position)
            char_buffer[position] = '\0';
         for (position = 0; position < operand_size; ++position)
             operand_buffer[position] = 0.0;
-        for (position = 0; position < operator_size; ++position)
-            operator_buffer[position] = '\0';
+        for (position = 0; position < operator_size; ++position){
+            operator_buffer[position][0] = '\0';
+            operator_buffer[position][1] = '\0';
+        }
 }
-
 int fill_buffer(char buffer[], int size){
     int position;
     int ch;

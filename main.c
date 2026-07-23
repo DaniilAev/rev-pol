@@ -7,7 +7,7 @@
 #define OPERAND_BUF_SIZE 16
 #define OPERATOR_BUF_SIZE 16
 
-void clean_buffer(char char_buffer[], int char_size, double operand_buffer[], int operand_size, char operator_buffer[], int operator_size);
+void clean_buffer(char char_buffer[], int char_size, double operand_buffer[], int operand_size, int operator_buffer[][2], int operator_size);
 int fill_buffer(char buffer[], int size);
 
 int main(){
@@ -41,7 +41,7 @@ int main(){
                 printf("%f ", operand_buffer[i]);
             printf("\n");
             for (i = 0; i < OPERATOR_BUF_SIZE; ++i)
-                printf("%c ", operator_buffer[i]);
+                printf("%c ", (operator_buffer[i])[0]);
             printf("\n");            
         }
         else if (dist_code == -1){
