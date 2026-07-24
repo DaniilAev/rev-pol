@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 int valid(const char s[]);
 
 void clean_buffer(char char_buffer[], struct unit unit_buffer[], int char_size, int unit_size){
@@ -34,7 +33,7 @@ int fill_buffer(char buffer[], int size){
     return position;
 }
 
-int dist(struct unit unit_buffer[], char char buffer[], int unit_size, int code){
+int dist(struct unit unit_buffer[], char ch_buffer[], int unit_size, int code){
     int ch_car = 0;
     int unit_car = 0;
 
@@ -86,7 +85,7 @@ int dist(struct unit unit_buffer[], char char buffer[], int unit_size, int code)
         }    
         else{
             if (valid(&ch_buffer[ch_car]) == 0){
-                unit_buffer[unit_car].type = '2'
+                unit_buffer[unit_car].type = '2';
                 unit_buffer[unit_car++].unit_field.operd = atof(&ch_buffer[ch_car]);
 
                 while (!(ch_buffer[ch_car] == ' ' || ch_buffer[ch_car] == '\0'))
@@ -96,8 +95,6 @@ int dist(struct unit unit_buffer[], char char buffer[], int unit_size, int code)
                 return -1;
         }        
     }
-    *last_opr = opr_car;
-    *last_opn = opn_car;
     return 0;
     
 }
