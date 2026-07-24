@@ -3,17 +3,16 @@
 
 int valid(const char s[]);
 
-void clean_buffer(char char_buffer[], int char_size, double operand_buffer[], int operand_size, int operator_buffer[][2], int operator_size){
+void clean_buffer(char char_buffer[], struct unit unit_buffer[], int char_size, int unit_size){
        int position;
 
        for (position = 0; position < char_size; ++position)
            char_buffer[position] = '\0';
-        for (position = 0; position < operand_size; ++position)
-            operand_buffer[position] = 0.0;
-        for (position = 0; position < operator_size; ++position){
-            operator_buffer[position][0] = '\0';
-            operator_buffer[position][1] = '\0';
-        }
+       for (position = 0; position < unit_size; ++position){
+           unit_buffer[position].type = 0;
+           unit_buffer[position].unit_field.operd = 0;           
+       }
+
 }
 int fill_buffer(char buffer[], int size){
     int position;
@@ -35,7 +34,7 @@ int fill_buffer(char buffer[], int size){
     return position;
 }
 
-int dist(const char ch_buffer[], double opn_buffer[], int opr_buffer[][2], int opn_buffer_size, int opr_buffer_size, int code, int* last_opn, int* last_opr){
+int dist(struct unit unit_buffer[], char char buffer[], int unit_size, int code){
     int ch_car = 0;
     int opn_car = 0;
     int opr_car = 0;

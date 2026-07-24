@@ -2,17 +2,16 @@
 #include <stdlib.h>
 #include "buffer_funcs.c"
 #include "valid.c"
+#include "unit.c"
 
 #define CHAR_BUF_SIZE 128
-#define OPERAND_BUF_SIZE 16
-#define OPERATOR_BUF_SIZE 16
+#define UNIT_BUF_SIZE 16
 
 void clean_buffer(char char_buffer[], int char_size, double operand_buffer[], int operand_size, int operator_buffer[][2], int operator_size);
 int fill_buffer(char buffer[], int size);
 
 int main(){
-    double operand_buffer[OPERAND_BUF_SIZE];
-    int operator_buffer[OPERATOR_BUF_SIZE][2];
+    struct unit unit_buffer[]
     char buffer[CHAR_BUF_SIZE];
     int code = 0;
     int dist_code;
