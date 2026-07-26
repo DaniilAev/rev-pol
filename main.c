@@ -6,8 +6,8 @@
 #include "calc.c"
 
 
-#define CHAR_BUF_SIZE 128
-#define UNIT_BUF_SIZE 16
+#define CHAR_BUF_SIZE 2048
+#define UNIT_BUF_SIZE 512
 
 void clean_buffer(char char_buffer[], struct unit unit_buffer[], int char_size, int unit_size);
 int fill_buffer(char buffer[], int size);
