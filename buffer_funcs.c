@@ -1,5 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+
+#ifndef val
+    #include "valid.c"
+#endif
+#ifndef uni
+    #include "unit.c"
+#endif
+
 int valid(const char s[]);
 
 void clean_buffer(char char_buffer[], struct unit unit_buffer[], int char_size, int unit_size){
@@ -48,52 +56,52 @@ int dist(struct unit unit_buffer[], char ch_buffer[], int unit_size, int code){
             continue;
         }
         else if (ch_buffer[ch_car] == '+' && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){ /*Plus case*/
-            unit_buffer[unit_car].type = '1';
-            unit_buffer[unit_car].unit_field.operr = '+';
+            unit_buffer[unit_car].type = 1;
+            unit_buffer[unit_car++].unit_field.operr = '+';
             ch_car += 2;
             continue;
         }
         else if (ch_buffer[ch_car] == '-' && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){ /* Minus case*/
-            unit_buffer[unit_car].type = '1';
+            unit_buffer[unit_car].type = 1;
             unit_buffer[unit_car++].unit_field.operr = '-';
             ch_car += 2;
             continue;
         }
         else if (ch_buffer[ch_car] == '*' && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){ /* Mult case*/
-            unit_buffer[unit_car].type = '1';
+            unit_buffer[unit_car].type = 1;
             unit_buffer[unit_car++].unit_field.operr = '*';
             ch_car += 2;
             continue;
         }
         else if (ch_buffer[ch_car] == '/' && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){ /* Div case*/
-            unit_buffer[unit_car].type = '1';
+            unit_buffer[unit_car].type = 1;
             unit_buffer[unit_car++].unit_field.operr = '/';
             ch_car += 2;
             continue;
         }
-        else if (ch_buffer[ch_car] == '%' && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){ /* MOD case*/
-            unit_buffer[unit_car].type = '1';
+        /*else if (ch_buffer[ch_car] == '%' && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){
+            unit_buffer[unit_car].type = 1;
             unit_buffer[unit_car++].unit_field.operr = '%';
             ch_car += 2;
             continue;
-        }
+        }*/
         else if (ch_buffer[ch_car] == '^' && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){ /* Power case*/
-            unit_buffer[unit_car].type = '1';
+            unit_buffer[unit_car].type = 1;
             unit_buffer[unit_car++].unit_field.operr = '^';
             ch_car += 2;
             continue;
         }    
         else{
             if (valid(&ch_buffer[ch_car]) == 0){
-                unit_buffer[unit_car].type = '2';
+                unit_buffer[unit_car].type = 2;
                 unit_buffer[unit_car++].unit_field.operd = atof(&ch_buffer[ch_car]);
-
                 while (!(ch_buffer[ch_car] == ' ' || ch_buffer[ch_car] == '\0'))
                     ++ch_car;              
             } 
             else
                 return -1;
-        }        
+        }
+
     }
     return 0;
     

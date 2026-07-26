@@ -3,6 +3,8 @@
 #include "unit.c"
 #include "valid.c"
 #include "buffer_funcs.c"
+#include "calc.c"
+
 
 #define CHAR_BUF_SIZE 128
 #define UNIT_BUF_SIZE 16
@@ -15,6 +17,8 @@ int main(){
     char buffer[CHAR_BUF_SIZE];
     int code = 0;
     int dist_code;
+    int calc_code;
+    double result;
 
     printf("Enter the expression or 'S' to stop the program.\n");
 
@@ -33,22 +37,16 @@ int main(){
         dist_code = dist(unit_buffer, buffer, UNIT_BUF_SIZE, code);
         if (dist_code == 0)
         {
-            int i;
-            for (i = 0; i < UNIT_BUF_SIZE; ++i){
-                 switch (unit_buffer[i].type){
-                     case '1':
-                         printf("%c ", (char)unit_buffer[i].unit_field.operr);
-                         break;
-                     case '2':
-                         printf("%.2f ", unit_buffer[i].unit_field.operd);
-                         break;
-                     case 0:
-                         printf("STOP ");  
-                         goto done;
-                     }
+            calc_code = calc(unit_buffer, &result);
+            if (calc_code == -1){
+                printf("Bad expression.\n");
+                continue;
             }
-            done:
-            printf("\n");
+            if (calc_code == -2){
+                printf("Zero division.\n");
+                continue;
+            }
+            printf("Result: %f\n", result);
         }
         else if (dist_code == -1){
             printf("Bad expression.\n");
@@ -58,7 +56,6 @@ int main(){
             printf("The operator buffer is full, the buffer size is %d operands and operators.\n", UNIT_BUF_SIZE - 1);
             continue;
         }
-        
     } 
     return 0 ;
 }

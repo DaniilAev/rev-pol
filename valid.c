@@ -1,3 +1,4 @@
+#define val
 int valid(const char c[]){ /* space or '\0' required, else  SF*/  
     int i = 0;
         

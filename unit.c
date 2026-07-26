@@ -1,3 +1,4 @@
+#define uni
 struct unit{
     union {
         long operr;
