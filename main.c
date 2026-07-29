@@ -11,17 +11,45 @@
 
 void clean_buffer(char char_buffer[], struct unit unit_buffer[], int char_size, int unit_size);
 int fill_buffer(char buffer[], int size);
+int cmd_dist(int argc, char* argv[], struct unit unit_buffer, int unit_size);
 
-int main(){
+int main(int argc, char* argv[]){
     struct unit unit_buffer[UNIT_BUF_SIZE];
     char buffer[CHAR_BUF_SIZE];
     int code = 0;
     int dist_code;
     int calc_code;
+    int cmd_code;
     double result;
+    
+    if (argc <2){
+        printf("Enter the expression, or S for stop the programm.\n");
+    }
+    else{
+        cmd_code = cmd_dist(argc, argv, unit_buffer[]);
+        if (code == -2){
+            printf("The operator buffer is full, the buffer size is %d operands and operators.\n", UNIT_BUF_SIZE - 1);
+            return 1;
+        }
+        if (code == -1){
+            printf("Bad expression.");
+        }
 
-    printf("Enter the expression or 'S' to stop the program.\n");
+        calc_code = calc(unit_buffer, &result);
 
+        calc_code = calc(unit_buffer, &result);
+        if (calc_code == -1){
+            printf("Bad expression.\n");
+            return 1;
+        }
+        if (calc_code == -2){
+            printf("Zero division.\n");
+            return 1;
+        }
+        printf("Result: %f\n", result);
+        return 0;
+    }
+    
     while (1){
 
         clean_buffer(buffer, unit_buffer, CHAR_BUF_SIZE, UNIT_BUF_SIZE);
