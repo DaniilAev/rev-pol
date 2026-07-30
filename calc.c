@@ -12,6 +12,11 @@ int calc(struct unit Buffer[], double * result_poi){
     struct unit *left_operand;
     struct unit *right_operand;
     double result;
+    
+    if (Buffer[0].type != 2)
+        return -1;
+
+    result = Buffer[0].unit_field.operd;
 
     for (i = 0; Buffer[i].type != 0; ++i){
         if (Buffer[i].type == 1){

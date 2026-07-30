@@ -47,7 +47,7 @@ int dist(struct unit unit_buffer[], char ch_buffer[], int unit_size, int code){
 
     while (ch_car < code)
     {
-        if (unit_car == unit_size - 1)
+        if (unit_car == unit_size - 1) 
             return -2;
         if (ch_buffer[ch_car] == '\0')
             return 0;
