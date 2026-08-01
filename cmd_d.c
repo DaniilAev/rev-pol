@@ -24,7 +24,7 @@ int cmd_dist(int argc, char* argv[], struct unit unit_buffer[], int unit_size){
             unit_buffer[i++].unit_field.operr = '-'; 
             continue;
         }
-        else if (argv[j][0] == '*' && argv[j][1] == '\0'){
+        else if ((argv[j][0] == '*' || argv[j][0] == 'x' || argv[j][0] == 'X') && argv[j][1] == '\0'){
             unit_buffer[i].type = 1;
             unit_buffer[i++].unit_field.operr = '*'; 
             continue;

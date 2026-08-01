@@ -67,7 +67,7 @@ int dist(struct unit unit_buffer[], char ch_buffer[], int unit_size, int code){
             ch_car += 2;
             continue;
         }
-        else if (ch_buffer[ch_car] == '*' && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){ /* Mult case*/
+        else if ((ch_buffer[ch_car] == '*' || ch_buffer[ch_car] == 'x' || ch_buffer[ch_car] == 'X') && (ch_buffer[ch_car+1] == ' ' || ch_buffer[ch_car+1] == '\0')){ /* Mult case*/
             unit_buffer[unit_car].type = 1;
             unit_buffer[unit_car++].unit_field.operr = '*';
             ch_car += 2;
